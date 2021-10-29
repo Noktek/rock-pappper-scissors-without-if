@@ -1,0 +1,32 @@
+import random
+game_result = []
+choice = '0'
+while choice != 'quit':
+
+    print("Make your choice")
+
+    choice = input()
+    choice: str = choice.lower()
+    choices = ['rock', 'paper', 'scissors']
+    computer_choice = random.choice(choices)
+
+    choice_dict = {'rock': 0, 'paper': 1, 'scissors': 2}
+    choice_new = choice_dict.get(choice, 3)
+    computer_new = choice_dict.get(computer_choice)
+
+    print("Computer choice: ", computer_choice)
+    print("My choice is", choice)
+
+    result_chart = [[0, 1, 2], [2, 0, 1], [1, 2, 0], [3, 3, 3]]
+    result_new = result_chart[choice_new][computer_new]
+
+    result = ['Tie', 'You win', 'You lose', "Invalid choice"]
+    result_print = result[result_new]
+    game_result.append(result_print)
+    print(game_result)
+    print("Type quit for stop, or leaderboard if u want to see scores, type anything else to play again")
+    step = input()
+    if (step == 'leaderboard'):
+        for i in range(len(result)):
+            print(result[i] + " - " + str(game_result.count(result[i])))
+    print()
